@@ -3,20 +3,19 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
 import { User } from '../../providers';
-import { MainPage } from '../';
+import { MainPage } from '..';
 
 @IonicPage()
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html'
+  selector: 'page-forgotPassword',
+  templateUrl: 'forgotPassword.html'
 })
-export class SignupPage {
+export class ForgotPasswordPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { fname: string, lname: string } = {
-    fname: 'Daniel',
-    lname: 'Reale',
+  account: { email: string} = {
+    email: 'test@test.com'
   };
 
   // Our translated text strings
@@ -27,14 +26,14 @@ export class SignupPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService) {
 
-    this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
+    this.translateService.get('FORGOTPASSWORD_ERROR').subscribe((value) => {
       this.signupErrorString = value;
     })
   }
 
-  doSignup() {
+  resetPassword() {
     // Attempt to login in through our User service
-    this.user.signup(this.account).subscribe((resp) => {
+    this.user.forgotPassword(this.account).subscribe((resp) => {
       this.navCtrl.push(MainPage);
     }, (err) => {
 
